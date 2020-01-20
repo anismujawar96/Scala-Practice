@@ -1,0 +1,31 @@
+import scala.util.{Failure, Success, Try}
+
+case class Employee(id:Int,name:String)
+def getEmployee(id:Int):Option[Employee] = {
+  if(id < 100)
+    Some(Employee(1,"anis"))
+  else
+    None
+}
+val a = getEmployee(10)
+val b = a.map(a=>"this employee has id => "+a.id)
+print(b.getOrElse("no employee found"))
+
+
+def getEmployeeWithTry(id:Int) = {
+  if(id < 100)
+  Try {
+      Employee(1,"Ani")
+  }
+  else Failure(new Exception())
+}
+val result = getEmployeeWithTry(10)
+
+result match {
+  case Success(ans)=>println("Employee is =>"+ans);
+  case Failure(e) => println(" error occured " +e);
+}
+
+
+
+
